@@ -12,7 +12,7 @@ public class Web extends HttpServlet {
     }
 
   public static void main(String[] args) throws Exception{
-    Server server = new Server(Integer.valueOf(System.getenv("PORT")));
+    Server server = new Server(port());
     ServletContextHandler context =
       new ServletContextHandler(ServletContextHandler.SESSIONS);
     context.setContextPath("/");
@@ -20,5 +20,9 @@ public class Web extends HttpServlet {
     context.addServlet(new ServletHolder(new Web()),"/*");
     server.start();
     server.join();   
+  }
+
+  private static int port() {
+    return Integer.valueOf(System.getenv("PORT"));
   }
 }
