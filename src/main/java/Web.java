@@ -23,6 +23,12 @@ public class Web extends HttpServlet {
   }
 
   private static int port() {
-    return Integer.valueOf(System.getenv("PORT"));
+    String port = System.getenv("PORT");
+
+    if (port == null) {
+      return 3000;
+    } else {
+      return Integer.valueOf(port);
+    }
   }
 }
